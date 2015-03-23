@@ -1,6 +1,6 @@
 /*
  * JPA Performance Benchmark - http://www.jpab.org
- * Copyright © ObjectDB Software Ltd. All Rights Reserved. 
+ * Copyright ï¿½ ObjectDB Software Ltd. All Rights Reserved.
  *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -30,7 +30,7 @@ import org.jpab.*;
 @Entity
 @TableGenerator(name="indexSeq", allocationSize=1000)
 public class IndexedPerson implements TestEntity {
-	
+
 	// Fields:
 
 	@Id @GeneratedValue(strategy=GenerationType.TABLE, generator="indexSeq")
@@ -38,12 +38,10 @@ public class IndexedPerson implements TestEntity {
 
 	private String firstName;
 	private String middleName;
-	
+
 	@javax.jdo.annotations.Index
-    @org.hibernate.annotations.Index(name="lastName")
-    @org.apache.openjpa.persistence.jdbc.Index
 	private String lastName;
-	
+
 	private String street;
 	private String city;
 	private String state;
@@ -81,7 +79,7 @@ public class IndexedPerson implements TestEntity {
     	Date[] dates = Randomizer.randomDates(3);
     	birthDate = dates[0];
     	joinDate =  dates[1];
-    	lastLoginDate = dates[2]; 
+    	lastLoginDate = dates[2];
     	loginCount = Randomizer.randomInt(1, 100);
     }
 
