@@ -1,6 +1,6 @@
 /*
  * JPA Performance Benchmark - http://www.jpab.org
- * Copyright © ObjectDB Software Ltd. All Rights Reserved. 
+ * Copyright ï¿½ ObjectDB Software Ltd. All Rights Reserved.
  *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -52,7 +52,7 @@ public final class Main {
 	//--------------//
 	// Data Members //
 	//--------------//
-	
+
 	// General:
 
 	/** Timeout in milliseconds to wait for every run */
@@ -65,7 +65,7 @@ public final class Main {
  	(e.g. "DataNucleus-PostgreSQL-server-NodeTest-1-100-100000") */
 	private final HashSet<String> OldResults = new HashSet<String>(997, 0.5F);
 
-	// JPA (changed in Outer Loop): 
+	// JPA (changed in Outer Loop):
 
 	/** Name of the active JPA provider */
 	private String jpaName;
@@ -105,7 +105,7 @@ public final class Main {
 
 	/**
 	 * The JPA Benchmark entry point.
-	 * 
+	 *
 	 * @args unused (arguments are specified in properties files)
 	 */
 	public static void main(String[] args) {
@@ -116,7 +116,7 @@ public final class Main {
 	 * Constructs a Main instance.
 	 */
 	public Main() {
-		// Set global settings: 
+		// Set global settings:
 		timeout = 1000 * ConfigHelper.getIntProperty("timeout");
 		globalJarFiles = FileHelper.getJarFiles(
 			new File(FileHelper.ROOT_DIR, "lib"));
@@ -155,7 +155,7 @@ public final class Main {
 	//-------------------------//
 
 	/**
-	 * Loads existing results and stores their signatures. 
+	 * Loads existing results and stores their signatures.
 	 */
 	private void loadOldResults() throws IOException {
 		if (FileHelper.RESULT_FILE.exists()) {
@@ -178,10 +178,10 @@ public final class Main {
 			reader.close();
 		}
 	}
-	
+
 	/**
 	 * Finds the position of the n-th space character in a line.
-	 *  
+	 *
 	 * @param line a line to search in
 	 * @param ordinal 0 - for the first; 1 - for the second, etc
 	 * @return the position of the space character.
@@ -195,7 +195,7 @@ public final class Main {
 
 	/**
 	 * Checks if a specified test already has results.
-	 * 
+	 *
 	 * @param puName the persistence unit name
 	 * @param testCode the test code
 	 * @return true - if result exists; false - if not.
@@ -222,6 +222,9 @@ public final class Main {
 	private void runAllCombinations() {
 
 		for (File jpaDir : FileHelper.JPA_DIRS) {
+
+			System.out.println("Loading JPA dir: " + jpaDir);
+
 			// Load JPA Provider / ObjectDB properties:
 			jpaProperties = ConfigHelper.loadProperties(jpaDir);
 			if (jpaDir.getName().startsWith("_") || jpaProperties == null) {
@@ -230,7 +233,7 @@ public final class Main {
 			jpaName = ConfigHelper.getName(jpaProperties);
 
 			// Prepare the provider JAR files:
-			jpaJarFiles = FileHelper.getJarFiles(new File(jpaDir, "lib")); 
+			jpaJarFiles = FileHelper.getJarFiles(new File(jpaDir, "lib"));
 
 			// Prepare a Java Agent path:
 			javaAgentPath = null;
@@ -267,6 +270,9 @@ public final class Main {
 		// Handle an ORM JPA Provider:
 		else {
 			for (File dbmsDir : FileHelper.DBMS_DIRS) {
+
+				System.out.println("Loading DB dir: " + dbmsDir);
+
 				// Load DBMS properties:
 				dbmsProperties = ConfigHelper.loadProperties(dbmsDir);
 				if (dbmsDir.getName().startsWith("_") ||
@@ -276,8 +282,8 @@ public final class Main {
 				dbmsName = ConfigHelper.getName(dbmsProperties);
 
 				// Prepare the provider JAR files:
-				dbmsJarFiles = FileHelper.getJarFiles(new File(dbmsDir, "lib"));
-	
+				// dbmsJarFiles = FileHelper.getJarFiles(new File(dbmsDir, "lib"));
+
 				// Invoke the Benchmark Runner once per DBMS:
 				runOneCombination();
 			}
@@ -318,7 +324,10 @@ public final class Main {
 		String[] jarFilePaths = jarFilePathList.toArray(new String[0]);
 
 		// Prepare a persistence unit name and a database file name:
-		persistenceUnitName = jpaName + "-" + dbmsName + "-" + mode;  
+		persistenceUnitName = jpaName + "-" + dbmsName + "-" + mode;
+
+		System.out.println("Persistence Unit Name: " + persistenceUnitName);
+
 
 		for (String testCode : ConfigHelper.getTestCodes()) {
 			if (REPEAT || !hasResult(persistenceUnitName, testCode)) {
@@ -385,7 +394,7 @@ public final class Main {
 		}
 
 		// Print messages:
-		long elapsedTime = (System.currentTimeMillis() - startTime) / 1000; 
+		long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
 		System.out.print(launcher.getStdOutMessage());
 		System.out.println("Completed in " + elapsedTime + " seconds.");
 		System.out.println(launcher.getStdErrMessage());
@@ -397,7 +406,7 @@ public final class Main {
 
 	/**
 	 * Builds a dynamic persistence.xml with a single persistence unit.
-	 * 
+	 *
 	 * @return the persistence.xml content as a string.
 	 */
 	private String buildPersistenceXml() {
@@ -502,7 +511,7 @@ public final class Main {
 
 	/**
 	 * Appends a property to a persistence unit definition.
-	 * 
+	 *
 	 * @param sb a StringBuilder to append the property to
 	 * @param name the property name
 	 * @param value the property value
@@ -515,7 +524,7 @@ public final class Main {
 
 	/**
 	 * Appends a property to a persistence unit definition.
-	 * 
+	 *
 	 * @param sb a StringBuilder to append the property to
 	 * @param property the full property XML element
 	 */
