@@ -1,2 +1,0 @@
-This directory should contain the SQLite DLL and JDBC driver jar,
-e.g. sqlite3.dll and sqlite-jdbc-3.6.0.jar.
