@@ -1,0 +1,1 @@
+This directory should contain the OpenJPA jar file - e.g. openjpa-all-2.0.0.jar.

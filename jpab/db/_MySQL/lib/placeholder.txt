@@ -1,0 +1,1 @@
+This directory should contain the MySQL driver jar - e.g. mysql-connector-java-5.1.7-bin.jar.

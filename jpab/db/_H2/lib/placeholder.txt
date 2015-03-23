@@ -1,0 +1,1 @@
+This directory should contain the H2 jar file, e.g. h2-1.2.142.jar.
