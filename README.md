@@ -8,8 +8,8 @@
 * Use NoSQL databases (Cassandra/Kundera, ...)
 * Removed Ext Tests (not supported by Kundera)
 
-## Setup
+## About Kundera
 
-Add the dependency folder inside the target folder on your CLASSPATH.
-
-    export CLASSPATH=.:~/git/jpab/target/dependency/
+Issues found so far:
+* It does not support extends (I had to remove Ext tests)
+* SELECT COUNT(o) FROM Object o, returns an object, not a Number
