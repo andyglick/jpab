@@ -1,6 +1,6 @@
 /*
  * JPA Performance Benchmark - http://www.jpab.org
- * Copyright © ObjectDB Software Ltd. All Rights Reserved. 
+ * Copyright ï¿½ ObjectDB Software Ltd. All Rights Reserved.
  *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -26,14 +26,13 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import org.jpab.ext.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
 
 /**
  * Runner of one benchmark test using one persistence unit.
- * Note: Invoked indirectly by Main (using Launcher). 
+ * Note: Invoked indirectly by Main (using Launcher).
  */
 public final class Runner {
 
@@ -43,7 +42,7 @@ public final class Runner {
 
 	/**
 	 * Runs a specified test on a specified persistence unit.
-	 * 
+	 *
 	 * @param args see usage message below
 	 */
 	public static void main(String[] args) throws Exception {
@@ -69,9 +68,6 @@ public final class Runner {
 			ConfigHelper.getIntProperty(testCode + "-threads"));
 		test.setBatchSize(
 			ConfigHelper.getIntProperty(testCode + "-batch-size"));
-
-		// Workaround for a DataNucleus JavaAgent issue:
-		new PersonExtExt();
 
 		// Run the test:
 		try {
@@ -121,8 +117,8 @@ public final class Runner {
 
 		// Try to create the database:
 		try {
-			Connection con = DriverManager.getConnection(url);  
-			Statement s = con.createStatement(); 
+			Connection con = DriverManager.getConnection(url);
+			Statement s = con.createStatement();
 			s.executeUpdate("CREATE DATABASE " + dbName);
 		}
 		catch (Exception e) {
@@ -173,7 +169,7 @@ public final class Runner {
 
 	/** Time per test run (in milliseconds) */
 	private final long totalTime;
-	
+
 	// Running:
 
 	/** Currently tested action */
@@ -191,7 +187,7 @@ public final class Runner {
 
 	/**
 	 * Constructs a Runner instance.
-	 * 
+	 *
 	 * @param persistenceUnitName name of the persistence unit
 	 * @param test the test to be run
 	 * @param dbPath optional database path for calculating disk space
@@ -205,7 +201,7 @@ public final class Runner {
 		this.totalTime = NANO_PER_SEC *
 			ConfigHelper.getIntProperty("total-time");
 
-		// Set the run context: 
+		// Set the run context:
 		this.persistenceUnitName = persistenceUnitName;
 		int ix = persistenceUnitName.indexOf('-');
 		this.jpaName = persistenceUnitName.substring(0, ix);
@@ -268,12 +264,12 @@ public final class Runner {
 
 	/**
 	 * Handles a single test action (method).
-	 * 
+	 *
 	 * @param actionClass wraps a benchmark method (action)
 	 * @return true - on success; false - on failure.
 	 */
 	private boolean handleAction(Class<? extends TestAction> actionClass) {
-		
+
 		try {
 			// Prepare the action name:
 			actionName = FormatHelper.getShortClassName(actionClass);
@@ -282,6 +278,7 @@ public final class Runner {
 			}
 
 			// Create the database connection factory:
+			System.out.println("PU Name -> " + persistenceUnitName);
 			emf = Persistence.createEntityManagerFactory(persistenceUnitName);
 
 			// Prepare working threads for the test:
@@ -294,7 +291,7 @@ public final class Runner {
 				actions[threadIx] = action;
 			}
 
-			// Test the action: 
+			// Test the action:
 			runAction(actionClass);
 
 			// On success - return true:
@@ -309,7 +306,7 @@ public final class Runner {
 	        // Print an error message:
 			System.out.print(actionName + " failed: " + e.getMessage());
 			if ("false".equalsIgnoreCase(ConfigHelper.getProperty("verbose"))) {
-				System.out.println(" *** Turn on verbose to print stack trace."); 
+				System.out.println(" *** Turn on verbose to print stack trace.");
 			}
 			else {
 				System.out.println();
@@ -361,7 +358,7 @@ public final class Runner {
 
 	/**
 	 * Runs a single test action.
-	 * 
+	 *
 	 * @param threadClass wraps a benchmark method (action)
 	 */
 	private void runAction(Class<? extends TestAction> threadClass)
@@ -415,7 +412,7 @@ public final class Runner {
 
 	/**
 	 * Runs all the test threads.
-	 * 
+	 *
 	 * @param deadline for all the threads to stop
 	 * @param maxEntityCount maximum objects to persist/remove
 	 */
@@ -450,7 +447,7 @@ public final class Runner {
 
 	/**
 	 * Writes result lines for ALL the actions.
-	 * 
+	 *
 	 * @param result "started", result number or exception string
 	 */
 	private void reportResult(Object result) {
@@ -466,7 +463,7 @@ public final class Runner {
 
 	/**
 	 * Writes result line for a specified action.
-	 * 
+	 *
 	 * @param result one of: "started", result number or exception string
 	 * @param actionName the name of the action
 	 */

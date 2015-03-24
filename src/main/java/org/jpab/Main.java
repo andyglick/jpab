@@ -42,9 +42,6 @@ public final class Main {
 	private static Class[] ENTITY_CLASSES = {
 		org.jpab.basic.Person.class,
 		org.jpab.col.CollectionPerson.class,
-		org.jpab.ext.PersonBase.class,
-		org.jpab.ext.PersonExt.class,
-		org.jpab.ext.PersonExtExt.class,
 		org.jpab.index.IndexedPerson.class,
 		org.jpab.node.Node.class
 	};
@@ -119,7 +116,7 @@ public final class Main {
 		// Set global settings:
 		timeout = 1000 * ConfigHelper.getIntProperty("timeout");
 		globalJarFiles = FileHelper.getJarFiles(
-			new File(FileHelper.ROOT_DIR, "lib"));
+			new File(FileHelper.ROOT_DIR, "dependency"));
 	}
 
 	/**

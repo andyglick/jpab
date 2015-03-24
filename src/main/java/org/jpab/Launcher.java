@@ -1,6 +1,6 @@
 /*
  * JPA Performance Benchmark - http://www.jpab.org
- * Copyright © ObjectDB Software Ltd. All Rights Reserved. 
+ * Copyright ï¿½ ObjectDB Software Ltd. All Rights Reserved.
  *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -27,15 +27,15 @@ import java.util.*;
  * The Launcher class is used to run a JVM in an external process (fork).
  */
 public final class Launcher extends Thread {
-	
+
 	//--------------//
 	// Data Members //
 	//--------------//
-	
+
 	// Static:
-	
+
 	/** All the active sub processes (for cleanup shutdown hook) */
-	static HashSet<Process> processSet = new HashSet<Process>(); 
+	static HashSet<Process> processSet = new HashSet<Process>();
 
 	// Arguments:
 
@@ -54,7 +54,7 @@ public final class Launcher extends Thread {
 	// Running:
 
 	/** The running sub process */
-	private Process process;	
+	private Process process;
 
 	/** Process exit code (0 - for success; 1 - for error) */
 	private int exitCode;
@@ -71,7 +71,7 @@ public final class Launcher extends Thread {
 
 	/**
 	 * Constructs a Launcher instance.
-	 * 
+	 *
 	 * @param javaAgentPath path to an optional Java Agent jar file (or null)
 	 * @param jarPaths paths to be added to the classpath
 	 * @param mainClass the entry point class (with a main method)
@@ -120,6 +120,12 @@ public final class Launcher extends Thread {
 			cmdList.addAll(argList);
 			String[] cmd = cmdList.toArray(new String[0]);
 
+			// This log may be required for debugging...
+			// System.out.println("Launching:");
+			// for(int i = 0; i < cmd.length; i++) {
+			//	 System.out.println("cmd[ "+ i + "] = " + cmd[i]);
+			// }
+
 			// Start executing the JVM process (asynchronously):
 			process = Runtime.getRuntime().exec(cmd, null);
 
@@ -147,7 +153,7 @@ public final class Launcher extends Thread {
 	}
 
 	/**
-	 * Kills the subprocess. 
+	 * Kills the subprocess.
 	 */
 	public void kill() {
 		if (process != null) {
@@ -181,7 +187,7 @@ public final class Launcher extends Thread {
 
 	/**
 	 * Gets the standard output message.
-	 * 
+	 *
 	 * @return the standard output message.
 	 */
 	String getStdOutMessage() {
@@ -194,7 +200,7 @@ public final class Launcher extends Thread {
 
 	/**
 	 * Gets the standard error message.
-	 * 
+	 *
 	 * @return the standard error message.
 	 */
 	String getStdErrMessage() {
@@ -225,7 +231,7 @@ public final class Launcher extends Thread {
 
 		/**
 		 * Constructs a MessageCollector instance.
-		 * 
+		 *
 		 * @param in the input stream to read message lines from
 		 * @param messageList to be filled with collected message lines
 		 */
