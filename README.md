@@ -8,6 +8,22 @@
 * Use NoSQL databases (Cassandra/Kundera, ...)
 * Removed Ext Tests (not supported by Kundera)
 
+## Compile and Run
+
+Traditional maven command:
+
+    mvn package
+
+Create the required key space inside Cassandra:
+
+    cqlsh
+    cqlsh> CREATE KEYSPACE kunderatests;
+
+Run the JAR inside the target folder:
+
+    cd target
+    java -jar jpab-1.0-SNAPSHOT.jar
+
 ## About Kundera
 
 Issues found so far:
